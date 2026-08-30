@@ -14,7 +14,8 @@ async function handleGenrateNewShortUrl(req, res){
     await URL.create({
         shortId: shortID,
         redirectUrl: url,
-        visitHistory : []
+        visitHistory : [],
+        createdBy: req.user._id,
     });
 
     const allUrl = await URL.find({});
