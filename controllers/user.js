@@ -35,7 +35,17 @@ async function handleUserlogin(req, res) {
   // const sessionId = uuidv4();
 
   const token = setUser(user);
-  // res.cookie("uid", token);
+
+  res.cookie("token", token, {
+    httpOnly: true,
+    sameSite: "lax",
+    maxAge: 24 * 60 * 60 * 1000,
+  });
+  res.cookie("uid", token, {
+    httpOnly: true,
+    sameSite: "lax",
+    maxAge: 24 * 60 * 60 * 1000,
+  });
 
   return res.redirect("/");
   // return res.json({token})
